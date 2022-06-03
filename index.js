@@ -15,28 +15,36 @@ mongoose
     // Before adding any recipes to the database, let's remove all existing ones
     return Recipe.deleteMany();
   })
+  // .then(() => {
+  //   // Run your code here, after you have insured that the connection was made
+  //   return Recipe.create({
+  //     title: "Rigatoni alla Genovese",
+  //     level: "Easy Peasy",
+  //     ingredients: [
+  //       "2 pounds red onions, sliced salt to taste",
+  //       "2 (16 ounce) boxes uncooked rigatoni",
+  //       "1 tablespoon chopped fresh marjoram leaves",
+  //       "1 pinch cayenne pepper",
+  //       "2 tablespoons freshly grated Parmigiano-Reggiano cheese",
+  //     ],
+  //     cuisine: "Italian",
+  //     dishType: "main_course",
+  //     image:
+  //       "https://images.media-allrecipes.com/userphotos/720x405/3489951.jpg",
+  //     duration: 220,
+  //     creator: "Chef Luigi",
+  //   });
+  // })
+  // .then((recipe) => {
+  //   console.log(recipe.title)
+  // })
   .then(() => {
-    // Run your code here, after you have insured that the connection was made
-    return Recipe.create({
-      title: "Rigatoni alla Genovese",
-      level: "Easy Peasy",
-      ingredients: [
-        "2 pounds red onions, sliced salt to taste",
-        "2 (16 ounce) boxes uncooked rigatoni",
-        "1 tablespoon chopped fresh marjoram leaves",
-        "1 pinch cayenne pepper",
-        "2 tablespoons freshly grated Parmigiano-Reggiano cheese",
-      ],
-      cuisine: "Italian",
-      dishType: "main_course",
-      image:
-        "https://images.media-allrecipes.com/userphotos/720x405/3489951.jpg",
-      duration: 220,
-      creator: "Chef Luigi",
-    });
+    return Recipe.insertMany(data);
   })
-  .then((recipe) => {
-    console.log(recipe.title)
+  .then((arrayRecipes) => {
+    arrayRecipes.forEach((recipe) => {
+      console.log(recipe.title);
+    });
   })
   .catch((error) => {
     console.error("Error connecting to the database", error);
