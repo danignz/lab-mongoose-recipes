@@ -46,6 +46,16 @@ mongoose
       console.log(recipe.title);
     });
   })
+  .then(() => {
+    return Recipe.findOneAndUpdate(
+      { title: "Rigatoni alla Genovese" },
+      { duration: 100 },
+      { new: true }
+    );
+  })
+  .then((recipe) => {
+    console.log(`<<< UPDATE OPERATION! >>> ${recipe.title} had been updated successfully!`);
+  })
   .catch((error) => {
     console.error("Error connecting to the database", error);
   })
